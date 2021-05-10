@@ -8,17 +8,29 @@ import Header from "./components/Header";
 import Admin from "./components/Admin";
 import Card from "./components/Card";
 
+import base from './base'
+
 class App extends Component {
     state = {
         username: this.props.match.params.username,
         recipes: {}
     }
 
+    componentDidMount() {
+       this.ref = base.syncState(`/${this.state.username}/recipes`, {
+            context: this,
+            state: 'recipes'
+        })
+    }
+
+    componentWillUnMount() {
+        base.removeBinding(this.ref)
+    }
+
     //Load raw data list recipes
     loadExample = () => this.setState({ recipes })
 
     render() {
-
         const cards = Object.keys(this.state.recipes)
             .map(key => (
                 <Card

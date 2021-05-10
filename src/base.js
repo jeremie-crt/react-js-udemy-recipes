@@ -2,16 +2,21 @@ import Rebase from 're-base'
 import firebase from 'firebase/app'
 import 'firebase/database'
 
-const firebaseApp = firebase.initializeApp({
-  apiKey: 'xxx',
-  authDomain: 'xxx',
-  databaseURL: 'xxx'
-})
+let firebaseConfig = {
+  apiKey: "AIzaSyD3bh3YNYg7QpXMzboTyFd2EkpHCRV4lkM",
+  authDomain: "reactjs-recipes.firebaseapp.com",
+  databaseURL: "https://reactjs-recipes-default-rtdb.firebaseio.com",
+  projectId: "reactjs-recipes",
+  storageBucket: "reactjs-recipes.appspot.com",
+  messagingSenderId: "772351475720",
+  appId: "1:772351475720:web:37cee4919ee5d33aa351bd"
+};
 
-const base = Rebase.createClass(firebaseApp.database())
+// Initialize Firebase
+const firebaseApp = firebase.initializeApp(firebaseConfig);
 
-// This is a named export
+const base = Rebase.createClass(firebase.database())
+
 export { firebaseApp }
 
-// this is a default export
 export default base
